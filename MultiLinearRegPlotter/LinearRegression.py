@@ -43,13 +43,7 @@ class LinearRegression:
         self.coeff, self.intercept = gradient_descent(X, Y, self.learn_rate, self.num_iterations)
 
     def predict(self, X) :
-        Y = np.zeros(X.shape[0])
-        for i in range(X.shape[0]) :
-            y_val = self.intercept
-            for j in range(X.shape[1]) :
-                y_val += self.coeff[j] * X[i, j]
-            Y[i] = y_val
-        return Y
+        return self.intercept + np.multiply(X, self.coeff)
 
 
 

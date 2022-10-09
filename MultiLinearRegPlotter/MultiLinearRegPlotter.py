@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 #reading from CSV data
-csv_filename = "2023 QS World University Rankings.csv"
+csv_filename = "C:\\Users\\Joseph\\Source\\MachineLearningProjects\\MultiLinearRegPlotter\\2023 QS World University Rankings.csv"
 print('Reading %s' % csv_filename)
 df = pd.DataFrame(pd.read_csv(csv_filename))
 X, Y = df[['ar score', 'er score']], df[['Rank']]

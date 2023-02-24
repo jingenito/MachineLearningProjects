@@ -24,7 +24,7 @@ def gradient_descent(X, Y, learn_rate, num_iterations) :
         m, b = get_gradient_step(X, Y, m, b, learn_rate)
     return (m, b)
 
-class LinearRegression :
+class SlowLinearRegression :
     def __init__(self) :
         #initial guesses
         self.coeff, self.intercept = 1, 0

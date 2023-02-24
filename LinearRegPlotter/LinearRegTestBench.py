@@ -1,10 +1,17 @@
+import os, sys
+
+#need to add Linear Regression to the path value
+root_dir = os.path.dirname(os.path.realpath('LinearRegTestBench.py'))
+app_path = sys.path.append(os.path.join(root_dir, 'Linear Regression'))
+
 from LinearRegression import LinearRegression as LinReg
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-df = pd.read_csv('SOCR-HeightWeight.csv')
-heights, weights = df['Height(Inches)'], df['Weight(Pounds)']
+df = pd.read_csv(os.path.join(root_dir, 'LinearRegPlotter', 'SOCR-HeightWeight.csv'))
+heights, weights = np.array(df['Height(Inches)']).reshape((len(df), 1)), np.array(df['Weight(Pounds)'])
 
 line_fitter = LinReg()
 

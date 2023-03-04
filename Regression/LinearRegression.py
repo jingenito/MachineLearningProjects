@@ -1,7 +1,7 @@
 import numpy as np 
 
 class LinearRegression:
-    """A class that represents a linear regression model."""
+    """A class that represents a multi-linear regression model."""
 
     def __init__(self):
         #initialize

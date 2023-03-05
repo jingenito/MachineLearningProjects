@@ -20,6 +20,8 @@ end = time.time()
 duration = end - start
 print('Data was fitted to model in %d seconds' % duration)
 
+print(line_fitter.get_params())
+
 weights_predicted = line_fitter.predict(heights)
 
 plt.plot(heights, weights, 'o')

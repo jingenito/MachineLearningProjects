@@ -14,11 +14,11 @@ class LinearRegression:
     def fit(self, X : np.array, y : np.array):
         """Fit the linear model to the data. Reshape the data into the desired shape to avoid any errors."""
         #convert the data into matrix form
-        A = np.append(np.ones((X.size, 1)), X, axis=1)
+        A = np.append(np.ones((X.shape[0], 1)), X, axis=1)
         #perform the matrix calculations
         A_t = np.transpose(A)
         self.coeff = np.matmul(np.matmul(np.linalg.inv(np.matmul(A_t, A)), A_t), y)
 
     def predict(self, X : np.array) -> np.array:
         """Returns a vector containing the prediction of the model."""
-        return np.matmul(np.append(np.ones((X.size, 1)), X, axis=1), self.coeff)
+        return np.matmul(np.append(np.ones((X.shape[0], 1)), X, axis=1), self.coeff)

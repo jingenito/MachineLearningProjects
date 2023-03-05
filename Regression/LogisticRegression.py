@@ -1,4 +1,5 @@
 import numpy as np 
+from Metrics import accuracy_score
 
 class LogisticRegression:
     """A class that represents a logistic regression model."""
@@ -26,9 +27,13 @@ class LogisticRegression:
 
     def predict_proba(self, X : np.array) -> np.array:
         """Returns a vector containing the predicted probabilities of the input data"""
-        log_odds = np.matmul(np.append(np.ones((X.shape[0], 1)), X, axis=1), self.coeff)
-        return 1/(1 + np.exp(-log_odds))
-    
+        log_odds = self.predict_log_proba(X)
+        return np.exp(log_odds) / (1 + np.exp(log_odds))
+
     def predict(self, X : np.array) -> np.array:
         """Returns a vector containing the predicted classes of the input data with a threshold of 0.5."""
-        return np.array(list(map(lambda x: 1 if x>=0.5 else 0, self.predict_proba(X).tolist())))
+        return np.array(list(map(lambda x: 1 if x>=0.5 else 0, np.array(self.predict_proba(X)))))
+
+    def score(self, X : np.array, y: np.array) -> float:
+        """Returns the accuracy of the current state of the model. Uses the Metrics.accuracy_score method."""
+        return accuracy_score(y, self.predict(X))

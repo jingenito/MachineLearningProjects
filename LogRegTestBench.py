@@ -34,23 +34,20 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, random
 ######################################################################
 ##preprocessing stage
 ######################################################################
-#scale the feature data so it has mean = 0 and standard deviation = 1
 scaler = MinMaxScaler()
-scaler.fit_transform(X_train)
-scaler.transform(X_test)
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
 #create and train the model
 log_reg = LogReg()
 log_reg.fit(X_train, y_train)
 
 #score the model
-from Metrics import accuracy_score as score
+# from Metrics import accuracy_score as score
 
+results_log = log_reg.predict_log_proba(X_test)
+results_proba = log_reg.predict_proba(X_test)
 results = log_reg.predict(X_test)
-print(score(np.array(y_test), results))
-
-# from sklearn.linear_model import LogisticRegression
-
-# slog_reg = LogisticRegression()
-# slog_reg.fit(X_train, y_train)
-# print(slog_reg.score(X_test, y_test))
+print(results_log)
+print(results_proba)
+print(results)

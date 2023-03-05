@@ -1,9 +1,10 @@
 #creating a module
 
-import numpy
+import numpy as np
 
 def confusion_matrix(y_true, y_pred) :
-    C = numpy.zeros((2,2))
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    C = np.zeros((2,2))
     for i in range(len(y_true)) :
         C[0,0] += 1 if y_true[i] == 0 and y_pred[i] == 0 else 0 #true negatives
         C[0,1] += 1 if y_true[i] == 0 and y_pred[i] == 1 else 0 #false positives

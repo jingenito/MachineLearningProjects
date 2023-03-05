@@ -3,15 +3,13 @@
 import numpy
 
 def confusion_matrix(y_true, y_pred) :
-    true_positives, true_negatives, false_positives, false_negatives = 0, 0, 0, 0
-
+    C = numpy.zeros((2,2))
     for i in range(len(y_true)) :
-        true_positives += 1 if y_true[i] == 1 and y_pred[i] == 1 else 0
-        true_negatives += 1 if y_true[i] == 0 and y_pred[i] == 0 else 0
-        false_positives += 1 if y_true[i] == 0 and y_pred[i] == 1 else 0
-        false_negatives += 1 if y_true[i] == 1 and y_pred[i] == 0 else 0
-
-    return numpy.array([[true_negatives, false_positives], [false_negatives, true_positives]])
+        C[0,0] += 1 if y_true[i] == 0 and y_pred[i] == 0 else 0 #true negatives
+        C[0,1] += 1 if y_true[i] == 0 and y_pred[i] == 1 else 0 #false positives
+        C[1,0] += 1 if y_true[i] == 1 and y_pred[i] == 0 else 0 #false negatives
+        C[1,1] += 1 if y_true[i] == 1 and y_pred[i] == 1 else 0 #true positives
+    return C
 
 def accuracy_score(y_true, y_pred) :
     """Computes the accuracy of the data."""

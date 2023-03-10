@@ -1,5 +1,7 @@
 import numpy as np 
 
+from Metrics import accuracy_score
+
 class LinearRegression:
     """A class that represents a multi-linear regression model."""
 
@@ -22,3 +24,7 @@ class LinearRegression:
     def predict(self, X : np.array) -> np.array:
         """Returns a vector containing the prediction of the model."""
         return np.matmul(np.append(np.ones((X.shape[0], 1)), X, axis=1), self.coeff)
+
+    def score(self, X : np.array, y: np.array) -> float:
+        """Returns the accuracy of the current state of the model. Uses the Metrics.accuracy_score method."""
+        return accuracy_score(y, self.predict(X))

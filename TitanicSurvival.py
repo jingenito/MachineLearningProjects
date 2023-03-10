@@ -25,7 +25,7 @@ passengers['SecondClass'].replace([1,2,3],[0,1,0],inplace=True)
 
 #################################################################################
 # Select the desired features
-features = passengers[["Sex","Age","FirstClass", "SecondClass","Fare"]]
+features = passengers[["Sex","Age","FirstClass", "SecondClass"]]
 labels = passengers[["Survived"]]
 
 from sklearn.model_selection import train_test_split
@@ -38,9 +38,8 @@ scaler = MinMaxScaler()
 training_data = scaler.fit_transform(training_data)
 validation_data = scaler.transform(validation_data)
 
-print(training_data)
-
 # Create and train the model
+print('Testing my implementation of Logistic Regression.')
 log_reg = LogReg()
 log_reg.fit(training_data,training_labels)
 
@@ -48,3 +47,12 @@ log_reg.fit(training_data,training_labels)
 print('Training Score: %d' % log_reg.score(training_data,training_labels))
 # Score the model on the validation data
 print('Validation Score: %d' % log_reg.score(validation_data,validation_labels))
+
+###########################################################################################################
+#Scikit-learn 
+from sklearn.svm import SVC
+
+print('Testing the implementation of SVM from Scikit-Learn.')
+classifier = SVC(gamma = 0.1)
+classifier.fit(training_data, training_labels)
+print('The accuracy of the SVM is %d%%' % (classifier.score(validation_data,validation_labels) * 100))
